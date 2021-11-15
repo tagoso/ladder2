@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
+
+<head>
+  <title>ladder - single player card games</title>
+  <style>
+    h1 {
+      font-size: 12px;
+      font-style: italic;
+    }
+    body {
+      touch-action: manipulation;
+      zoom: 2;
+      user-select: none; /* supported by Chrome and Opera */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+    }
+    a {
+      color: deeppink;
+    }
+    #skipSwitch {
+      display: inline;
+    }
+    #skipBlank {
+      display: inline;
+    }
+  </style>
+  <script src="play.js"></script>
+</head>
+
+<body>
+  <h1>Ladder</h1>
+  <div id="buttons">
+    <p id="skipBlank"></p>
+    <button onclick="getCards()" id="getButton">draw</button>
+    <p id="skipSwitch">
+      <button id="skipButton" onclick="skipCards()">skip(1)</button>
+    </p>
+    <button id="button2" onClick="window.location.reload();">🔥</button>
+  </div>
+
+  <p id="firstLine">☝️ draw your first card! (restart: 🔥)</p>
+
+  <p id="myHandinP"></p>
+
+  <table>
+    <tr>
+      <td>total score ⏬ * ⏭</td>
+      <td id="totalScoreInTd"></td>
+    </tr>
+    <tr>
+      <td>depth ⏬</td>
+      <td id="verticalScoreInTd"></td>
+    </tr>
+    <tr>
+      <td>max length ⏭</td>
+      <td id="MaxDistanceInTd"></td>
+    </tr>
+    <tr>
+      <td>current length ⏩</td>
+      <td id="DistanceInTd"></td>
+    </tr>
+  </table>
+
+  <br />
+
+  <div>
+    <a
+      href="https://docs.google.com/spreadsheets/d/1dmPNtIaByoqUWx6yoQMMsj1UwL6NEg4td-t-CWkNkGk/edit#gid=1505676368"
+      >100,000 times playing data</a
+    >
+  </div>
+
+  <div>
+    <p>some interesting numbers...</p>
+    <ul>
+      <li>max score was 81 (1/100000)</li>
+      <li>min score was 3 (3/100000)</li>
+      <li>max depth was 14 (1/100000)</li>
+      <li>max length was 12 (4/100000)</li>
+      <li>most common score was 12 (13361/100000)</li>
+    </ul>
+    <p>💎 game & code by <a href="https://hi.tago.so">Tago So</a></p>
+  </div>
+
+  <script>
+    // getButton
+
+    document.getElementById("getButton").addEventListener("click", function () {
+      document.getElementById("firstLine").innerHTML =
+        "your score is " + verticalScore * widthMax + "! restart: 🔥";
+    });
+
+    document.getElementById("getButton").addEventListener("click", function () {
+      document.getElementById("verticalScoreInTd").innerHTML = verticalScore;
+    });
+
+    document.getElementById("getButton").addEventListener("click", function () {
+      document.getElementById("DistanceInTd").innerHTML = widthTemp;
+    });
+
+    document.getElementById("getButton").addEventListener("click", function () {
+      document.getElementById("MaxDistanceInTd").innerHTML = widthMax;
+    });
+
+    document.getElementById("getButton").addEventListener("click", function () {
+      document.getElementById("totalScoreInTd").innerHTML =
+        verticalScore * widthMax;
+    });
+
+    document.getElementById("getButton").addEventListener("click", function () {
+      if (skippable === false) {
+        document.getElementById("skipSwitch").innerHTML =
+          '<button id="skipButton" disabled>skip(0)</button>';
+      }
+    });
+
+    document.getElementById("getButton").addEventListener("click", function () {
+      document.getElementById("myHandinP").innerHTML = myHandHTML.join("");
+      if (drawDeck.length !== 0) {
+        document.getElementById("firstLine").innerHTML =
+          "remaining 🂠: " +
+          (drawDeck.length - 1) +
+          "<br>" +
+          "your hand: " +
+          drawDeck[0].symbol +
+          drawDeck[0].number;
+      }
+    });
+
+    // skipCards
+
+    document
+      .getElementById("skipButton")
+      .addEventListener("click", function () {
+        document.getElementById("firstLine").innerHTML =
+          "your score is " + verticalScore * widthMax + "! restart: 🔥";
+      });
+
+    document
+      .getElementById("skipButton")
+      .addEventListener("click", function () {
+        console.log("skipCards is working");
+        document.getElementById("verticalScoreInTd").innerHTML = verticalScore;
+      });
+
+    document
+      .getElementById("skipButton")
+      .addEventListener("click", function () {
+        document.getElementById("DistanceInTd").innerHTML = widthTemp;
+      });
+
+    document
+      .getElementById("skipButton")
+      .addEventListener("click", function () {
+        document.getElementById("MaxDistanceInTd").innerHTML = widthMax;
+      });
+
+    document
+      .getElementById("skipButton")
+      .addEventListener("click", function () {
+        document.getElementById("totalScoreInTd").innerHTML =
+          verticalScore * widthMax;
+      });
+
+    document
+      .getElementById("skipButton")
+      .addEventListener("click", function () {
+        console.log("html: " + skippable);
+        skippable = false;
+        if (skippable === false) {
+          document.getElementById("skipSwitch").innerHTML =
+            '<button id="skipButton" disabled>skip(0)</button>';
+        }
+      });
+
+    document
+      .getElementById("skipButton")
+      .addEventListener("click", function () {
+        document.getElementById("myHandinP").innerHTML = myHandHTML.join("");
+        if (drawDeck.length !== 0) {
+          document.getElementById("firstLine").innerHTML =
+            "remaining 🂠: " +
+            (drawDeck.length - 1) +
+            "<br>" +
+            "your hand: " +
+            drawDeck[0].symbol +
+            drawDeck[0].number;
+        }
+      });
+  </script>
+</body>
