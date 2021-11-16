@@ -10,3 +10,5 @@ app.get("/", (req, res) => {
 
 // start the server listening for requests.
 app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
+
+app.use(express.static(path.join(__dirname, "app/assets")));
