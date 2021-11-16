@@ -6,7 +6,7 @@ app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   // res.sendFile(__dirname + "/index.html");
-  res.send("Hello world!");
+  res.send("Hello World!");
 });
 
 // start the server listening for requests
