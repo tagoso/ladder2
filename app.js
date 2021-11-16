@@ -4,7 +4,8 @@ const app = express();
 //switch local or heroku here
 // const port = 3000;
 // use the express-static middleware.
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use("/", express.static(__dirname));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
