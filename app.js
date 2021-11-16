@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+//switch local or heroku here
+// const port = 3000;
 // use the express-static middleware.
 app.use(express.static("public"));
 

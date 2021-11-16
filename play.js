@@ -575,9 +575,9 @@ function getCards() {
     // nextPlusMinus1Checker();
     if (widthTemp >= widthMax) {
       widthMax = widthTemp;
-  }
-    console.log("widthTemp: " + widthTemp);  
-    console.log("widthMax: " + widthMax);   
+    }
+    console.log("widthTemp: " + widthTemp);
+    console.log("widthMax: " + widthMax);
   }
 }
 
