@@ -1,0 +1,26 @@
+{
+  "name": "ladder2",
+  "version": "1.0.0",
+  "description": "single player card game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tagoso/ladder2.git"
+  },
+  "author": "Tago So",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tagoso/ladder2/issues"
+  },
+  "homepage": "https://github.com/tagoso/ladder2#readme",
+  "engines": {
+    "node": "17.0.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
